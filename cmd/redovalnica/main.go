@@ -51,7 +51,7 @@ func main() {
 			{
 				Name:  "izpis",
 				Usage: "Izpiši vse ocene",
-				Action: func(ctx context.Context, cmd *cli.Command) error {
+				Action: func(ctx context.Context, c *cli.Command) error {
 					studenti := primerRedovalnice()
 					redovalnica.IzpisVsehOcen(studenti)
 					return nil
@@ -61,7 +61,7 @@ func main() {
 			{
 				Name:  "uspeh",
 				Usage: "Izpiši končni uspeh vseh študentov",
-				Action: func(ctx context.Context, cmd *cli.Command) error {
+				Action: func(ctx context.Context, c *cli.Command) error {
 					studenti := primerRedovalnice()
 					redovalnica.IzpisiKoncniUspeh(studenti)
 					return nil
@@ -75,13 +75,9 @@ func main() {
 					&cli.StringFlag{Name: "vpisna", Usage: "Vpisna številka"},
 					&cli.IntFlag{Name: "ocena", Usage: "Nova ocena"},
 				},
-				Action: func(ctx context.Context, cmd *cliCommand) error {
-					vpisna := cmd.String("vpisna")
-					ocena := cmd.Int("ocena")
-
-					// parametri iz root level flags
-					min := cmd.Parent().Int("minOcena")
-					max := cmd.Parent().Int("maxOcena")
+				Action: func(ctx context.Context, c *cli.Command) error {
+					vpisna := c.String("vpisna")
+					ocena := c.Int("ocena")
 
 					studenti := primerRedovalnice()
 					redovalnica.DodajOceno(studenti, vpisna, ocena)
