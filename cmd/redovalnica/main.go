@@ -2,18 +2,16 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
-	"strconv"
 
 	"github.com/Favstina/domaca5/redovalnica"
 	"github.com/urfave/cli/v3"
 )
 
-func main(){
+func main() {
 	cmd := &cli.Command{
-		Name: "Redovalnica",
+		Name:  "Redovalnica",
 		Usage: "Upravljanje z ocenami",
 
 		// stikala
@@ -76,7 +74,7 @@ func main(){
 
 					return nil
 
-				}
+				},
 			},
 		},
 	}
@@ -85,37 +83,7 @@ func main(){
 	}
 }
 
-func run(ctx context.Context, cmd *cli.Command) error {
-
-	// Preberemo parametre
-	min := cmd.Int("minOcena")
-	max := cmd.Int("maxOcena")
-	stMin := cmd.Int("stOcen")
-
-	fmt.Println("Nastavitve:")
-	fmt.Println("  minOcena =", min)
-	fmt.Println("  maxOcena =", max)
-	fmt.Println("  stOcen   =", stMin)
-	fmt.Println()
-
-	// -----------------------------
-	// Ustvarimo testne študente
-	// -----------------------------
-	
-
-	redovalnica.IzpisVsehOcen(studenti)
-
-	redovalnica.IzpisiKoncniUspeh(studenti)
-	fmt.Println("Vse ocene:")
-	redovalnica.IzpisVsehOcen(studenti)
-
-	fmt.Println("\nKončni uspeh:")
-	redovalnica.IzpisiKoncniUspeh(studenti)
-
-	return nil
-}
-
-func primerRedovalnice(){
+func primerRedovalnice() {
 	studenti := make(map[string]redovalnica.Student)
 
 	prviStu := Student{"Anja", "Blasko", []int{2, 4, 8, 6, 9, 3, 7, 10}}
