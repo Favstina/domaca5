@@ -7,7 +7,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/Favstina/domaca5/paketRedovalnica"
+	"github.com/Favstina/domaca5/redovalnica"
 	"github.com/urfave/cli/v3"
 )
 
